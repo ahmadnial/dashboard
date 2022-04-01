@@ -346,7 +346,7 @@
             </a>
             <div class="collapse" id="charts">
               <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="pages/charts/chartjs.html">ChartJs</a></li>
+                <li class="nav-item"> <a class="nav-link" href="chart.php">ChartJs</a></li>
               </ul>
             </div>
           </li>
@@ -447,8 +447,8 @@
                         <h2 class="mb-0 font-weight-normal"><i class="icon-sun mr-2"></i>31<sup>C</sup></h2>
                       </div>
                       <div class="ml-2">
-                        <h4 class="location font-weight-normal">Bangalore</h4>
-                        <h6 class="font-weight-normal">India</h6>
+                        <h4 class="location font-weight-normal">Bandung Km.7</h4>
+                        <h6 class="font-weight-normal">YogyaKarta</h6>
                       </div>
                     </div>
                   </div>
