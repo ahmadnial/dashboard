@@ -1,13 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<? include "conn.php";
-   $sql = "SELECT fs_kd_layanan,count (fs_kd_reg) from ta_registrasi where fd_tgl_masuk between
-   '2022-03-01' and '2022-03-31' and fd_tgl_void='3000-01-01' Group by fs_kd_layanan";
 
-    $query = sqlsrv_query($conn, $sql) or die(sqlsrv_errors());; 
-    while ($data = sqlsrv_fetch_array($query)) {
-    }
-  ?>
 <head>
   <!-- Required meta tags -->
   <meta charset="utf-8">
@@ -443,14 +436,23 @@
               </div>
             </div>
           </div>
+          <? include "conn.php";
+          $sql = "SELECT fs_kd_layanan,count (fs_kd_reg) from ta_registrasi where fd_tgl_masuk between
+          '2022-03-01' and '2022-03-31' and fd_tgl_void='3000-01-01' Group by fs_kd_layanan";
 
-          <div class="main-panel">
+            $query = sqlsrv_query($conn, $sql) or die(sqlsrv_errors());; 
+            while ($data = sqlsrv_fetch_array($query)) {
+            
+          ?>
+          <?php echo $data['fs_kd_layanan']; ?>
+          
+                  <div class="main-panel">
         <div class="content-wrapper">
           <div class="row">
-            <div class="col-lg-6 grid-margin stretch-card">
+            <div class="col grid-margin stretch-card">
               <div class="card">
                 <div class="card-body">
-                  <h4 class="card-title">Line chart</h4>
+                  <h4 class="card-title">TEST</h4>
                   <canvas id="lineChart"></canvas>
                 </div>
               </div>
@@ -487,7 +489,7 @@
         type: 'line',
         // The data for our dataset
         data: {
-            labels: [<?php echo $data['fs_kd_layanan']; ?>],
+            labels: ["januari","Februari","Maret","April"],
             datasets: [{
                 label:'Data test ',
                 backgroundColor: ['rgba(255, 99, 132, 0.2)',
@@ -502,7 +504,7 @@
                                 'rgba(75, 192, 192, 1)',
                                 'rgba(153, 102, 255, 1)',
                                 'rgba(255, 159, 64, 1)'],
-                data: [<?php echo $data['']; ?>],
+                data: [114,33,498,90],
                 borderWidth: 1,
                 fill: false
             }]
@@ -513,7 +515,7 @@
             scales: {
                 yAxes: [{
                     ticks: {
-                        beginAtZero:true
+                        beginAtZero:false
                     }
                 }]
             }
