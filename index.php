@@ -1,6 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <?php 
+session_start();
+
+if ( isset($_SESSION["login"] ) ) {
+  header("location: dashboard.php");
+  exit;
+}
 
 include "conn.php";
  
@@ -12,29 +18,25 @@ if (isset($_POST['mangkat'])) {
     $password =$_POST['password'];
  
     // $sql = "SELECT * FROM RSNR_user WHERE email = '$email' ";
-    $query = sqlsrv_query ( $conn, "SELECT * FROM RSNR_user WHERE email = '$email' ");
-    var_dump ($query); die();
-    if(sqlsrv_num_rows($query) != 0) {
+    $query = sqlsrv_query ( $conn, "SELECT * FROM RSNR_user WHERE email = '$email' and password='$password'");
+    // var_dump (sqlsrv_num_rows($query)); die();
+    if(sqlsrv_fetch_array($query) != 0 ) {
       
-    $row = sqlsrv_fetch_array($query);
-   
-    if(password_verify($password, $row['password']) ) {
+      $_SESSION["login"] = true;   
+// $row = sqlsrv_fetch_array($query);
+// if(password_verify($password, $row['password']) ) {
       header('location: dashboard.php');
       exit;
-      }
+      
 
     }
-    // echo '<script language="javascript">
-    //                 window.alert("LOGIN GAGAL! Silakan coba lagi");
-    //                 window.location.href="./";
-    //               </script>';
+    echo "<script>
+						swal('Salah Format mazehh', 'Kudu PDF tur Ukuran Cilik!', 'error')
+						</script>";
         
   } 
 ?>
-<!-- echo '<script language="javascript">
-                    window.alert("LOGIN GAGAL! Silakan coba lagi");
-                    window.location.href="./";
-                  </script>';; -->
+
 <head>
   <!-- Required meta tags -->
   <meta charset="utf-8">
@@ -52,7 +54,31 @@ if (isset($_POST['mangkat'])) {
   <!-- endinject -->
   <link rel="shortcut icon" href="images/favicon.png" />
 </head>
+<style type="text/css">
+		.body{
 
+			background-image: url('images/lockscreen-bg.jpg');
+			/* Full height */
+                        height: 100%;
+
+                       /* Center and scale the image nicely */
+                        background-position: center;
+                        background-repeat: no-repeat;
+                        background-size: cover;		}
+		.panel > .panel-heading{
+			color:#fff;
+			font-weight: bold;
+		}
+           .footer {
+             position: fixed;
+             left: 0;
+             bottom: 0;
+             width: 100%;
+             background-color: #4268b3;
+             color: white;
+             font-size:30px;
+           }
+	</style>
 <body>
 
   <div class="container-scroller">
@@ -62,16 +88,16 @@ if (isset($_POST['mangkat'])) {
           <div class="col-lg-4 mx-auto">
             <div class="auth-form-light text-left py-5 px-4 px-sm-5">
               <div class="brand-logo">
-                <img src="images/logo.svg" alt="logo">
+                <img src="images/logo-light.svg" alt="">
               </div>
-              <h4>Hello! let's get started</h4>
+              <h4>Holla! <b >Bismillah</b> dulu ya, let's get started</h4>
               <h6 class="font-weight-light">Sign in to continue.</h6>
               <form class="pt-3" method="POST">
                 <div class="form-group">
-                  <input type="email" class="form-control form-control-lg" name="email" id="Email" placeholder="Email">
+                  <input type="email" class="form-control form-control-lg" name="email" id="Email" placeholder="Email" Required>
                 </div>
                 <div class="form-group">
-                  <input type="password" class="form-control form-control-lg" name="password" id="Password" placeholder="Password">
+                  <input type="password" class="form-control form-control-lg" name="password" id="Password" placeholder="Password" Required>
                 </div>
                 <div class="mt-3">
                   <button type="submit" class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn mt-1" name="mangkat"> Log In </button>
@@ -114,6 +140,11 @@ if (isset($_POST['mangkat'])) {
   <script src="js/template.js"></script>
   <script src="js/settings.js"></script>
   <script src="js/todolist.js"></script>
+  <script src="js/sweetalert.min.js"></script>
+  <script src="js/sweetalert.js"></script>
+  <script src="js/sweetalert2.all.min.js"></script>
+  <script src="js/jquery.min.js"></script>
+
   <!-- endinject -->
 </body>
 

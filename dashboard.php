@@ -1,3 +1,12 @@
+<?php 
+session_start();
+
+if ( !isset($_SESSION["login"] ) ) {
+  header("location: index.php");
+  exit;
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -103,14 +112,14 @@
           </li>
           <li class="nav-item nav-profile dropdown">
             <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
-              <img src="images/faces/face28.jpg" alt="profile" />
+              <img src="images/faces/face23.jpg" alt="profile" />
             </a>
             <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
               <a class="dropdown-item">
                 <i class="ti-settings text-primary"></i>
                 Settings
               </a>
-              <a class="dropdown-item">
+              <a href="logOut.php" class="dropdown-item">
                 <i class="ti-power-off text-primary"></i>
                 Logout
               </a>
@@ -422,13 +431,13 @@
                   <div class="justify-content-end d-flex">
                     <div class="dropdown flex-md-grow-1 flex-xl-grow-0">
                       <button class="btn btn-sm btn-light bg-white dropdown-toggle" type="button" id="dropdownMenuDate2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                        <i class="mdi mdi-calendar"></i> Today (10 Jan 2021)
+                        <i class="mdi mdi-calendar"></i> Soon
                       </button>
                       <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuDate2">
-                        <a class="dropdown-item" href="#">January - March</a>
-                        <a class="dropdown-item" href="#">March - June</a>
-                        <a class="dropdown-item" href="#">June - August</a>
-                        <a class="dropdown-item" href="#">August - November</a>
+                        <a class="dropdown-item" href="#">Soon</a>
+                        <a class="dropdown-item" href="#">Soon</a>
+                        <a class="dropdown-item" href="#">Soon</a>
+                        <a class="dropdown-item" href="#">Soon</a>
                       </div>
                     </div>
                   </div>
